@@ -3,17 +3,73 @@
 A portfolio-ready data engineering project that extracts air-quality data from a REST API, transforms and validates it with Python/Pandas, and loads it into PostgreSQL. Apache Airflow orchestrates the daily pipeline with retries and logging, and Docker provides a reproducible local environment.
 
 ## Architecture
+
 REST API → Python/Requests → Pandas → Validation → PostgreSQL
 
 Airflow manages: Extract → Transform → Validate → Load
 
 ## Tech Stack
+
 - Python, Requests, Pandas
 - PostgreSQL
 - Apache Airflow
 - Docker / Docker Compose
 - SQLAlchemy / psycopg2
 - Pytest
+
+## Project Structure
+
+```text
+API-to-Database-ETL-Pipeline/
+│
+├── dags/
+│   └── air_quality_etl_dag.py
+│       → Airflow DAG that orchestrates the complete ETL workflow
+│
+├── src/
+│   ├── extract.py
+│   │   → Extracts air-quality data from the REST API
+│   │
+│   ├── transform.py
+│   │   → Cleans and transforms raw API data using Pandas
+│   │
+│   ├── validate.py
+│   │   → Performs data-quality and validation checks
+│   │
+│   └── load.py
+│       → Loads validated data into PostgreSQL
+│
+├── sql/
+│   └── init.sql
+│       → Creates the PostgreSQL table and indexes
+│
+├── tests/
+│   └── test_transform.py
+│       → Unit tests for transformation logic
+│
+├── data/
+│   → Local data storage (not committed to Git)
+│
+├── logs/
+│   → Local application/Airflow logs
+│
+├── Dockerfile
+│   → Builds the custom Airflow environment
+│
+├── docker-compose.yml
+│   → Runs Airflow and PostgreSQL services
+│
+├── requirements.txt
+│   → Lists the Python dependencies
+│
+├── .env.example
+│   → Template for API and database configuration
+│
+├── .gitignore
+│   → Prevents secrets, logs and temporary files from being committed
+│
+└── README.md
+    → Project documentation and setup instructions
 
 ## Setup
 1. Copy `.env.example` to `.env`.
