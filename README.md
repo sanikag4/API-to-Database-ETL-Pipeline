@@ -70,6 +70,7 @@ API-to-Database-ETL-Pipeline/
 │
 └── README.md
     → Project documentation and setup instructions
+```
 
 ## Setup
 1. Copy `.env.example` to `.env`.
